@@ -2,6 +2,6 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-f', 'Dockerfile', '--tag=gcr.io/$PROJECT_ID/lol_data_collector:$_VERSION', '.']
 - name: 'gcr.io/cloud-builders/docker'
-  args: ["push", "gcr.io/$PROJECT_ID/cb-lol_data_collector-server:$_VERSION"]
+  args: ["push", "gcr.io/$PROJECT_ID/lol_data_collector:$_VERSION"]
 - name: 'gcr.io/cloud-builders/gcloud'
   args: ['app', 'deploy']
