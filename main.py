@@ -35,6 +35,10 @@ def root():
 def health_check():
     return "live"
 
+@app.route('/test')
+def test():
+    return "just a test"
+
 
 if __name__ == '__main__':
     # This is used when running locally only. When deploying to Google App
