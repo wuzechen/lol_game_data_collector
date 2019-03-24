@@ -1,2 +1,5 @@
 Flask
-elasticsearch
+flask-login
+flask-security
+flask-sqlalchemy
+google-auth

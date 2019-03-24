@@ -14,10 +14,19 @@
 
 # [START gae_python37_render_template]
 import datetime
+from flask import Flask, render_template, jsonify
 
-from flask import Flask, render_template
+# from flask_security import Security, login_required, SQLAlchemySessionUserDatastore
+# from database import db_session, init_db
+# from models import User, Role
 
+# 创建应用（app）
 app = Flask(__name__)
+
+
+# # 设置 Flask-Security
+# user_datastore = SQLAlchemySessionUserDatastore(db_session, User, Role)
+# security = Security(app, user_datastore)
 
 
 @app.route('/')
@@ -38,6 +47,40 @@ def health_check():
 @app.route('/test')
 def test():
     return "just a test"
+
+@app.route('/api/categories')
+def categories():
+    data = {"ca":["ca_total_score", "spatial_reasoning", "performance_iq", "verbal_reasoning", "processing_speed", "coping_with_distractions", "quantitative_reasoning"],
+            "wm":["planning", "decisiveness", "orderliness","quality_quantity","thoroughness","self_monitoring","methodicallness","goal_orientation_efficiency", "time_management"],
+            "ss":["emotional_intelligence", "empathy", "appropriate_behaviour_understanding", "collegial_behavior", "team_work"]}
+    return jsonify(data)
+
+@app.route('/api/dummydata/1')
+def dummy_data1():
+    data = [
+      {
+        "name": "user1",
+        "test_scores": {
+          "ca": [5.4,5.3,5.1,4.8,5,5,4.4],
+          "ss": [2.4,2.8,4.3,3.8,4.1],
+          "wm": [4.4,5.1,1.8,5.2,4.5,4.7,5,5,4.9]
+        }
+      },
+      {
+        "name": "role model1",
+        "test_scores": {
+          "ca": [5.4,5.3,5.4,4.8,3,5,4.4],
+          "ss": [2.4,2.8,4.3,3.8,2.1],
+          "wm": [3.4,3.1,5.8,5.2,4.5,4.7,5,5,3.9]
+        }
+      }
+    ]
+    return jsonify(data)
+
+@app.route('/api/dummy/fit_rate/1')
+def dummy_data2():
+    data = {"name":"user2", "data":82}
+    return jsonify(data)
 
 
 if __name__ == '__main__':
