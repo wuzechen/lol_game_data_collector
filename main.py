@@ -15,6 +15,7 @@
 # [START gae_python37_render_template]
 import datetime
 from flask import Flask, render_template, jsonify
+import requests
 
 # from flask_security import Security, login_required, SQLAlchemySessionUserDatastore
 # from database import db_session, init_db
@@ -81,6 +82,12 @@ def dummy_data1():
 def dummy_data2():
     data = {"name":"user2", "data":82}
     return jsonify(data)
+
+@app.route('/api/call_other_api')
+def call_api():
+    r = requests.get('http://35.221.122.208/api/user/1', headers={"X-API-KEY":"jsolvtaredev"})
+    print(r.json())
+    return jsonify(r.json())
 
 
 if __name__ == '__main__':

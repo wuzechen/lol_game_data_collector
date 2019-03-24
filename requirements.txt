@@ -3,3 +3,4 @@ flask-login
 flask-security
 flask-sqlalchemy
 google-auth
+requests
